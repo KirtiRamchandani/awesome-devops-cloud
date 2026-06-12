@@ -911,6 +911,24 @@ Portfolio-grade ops projects demonstrating automation, reliability, and cost awa
 | Multi-tenant namespace design | Lab | Advanced | Free | Quota, NetworkPolicy, and RBAC templates. | 🔴 🆓 📘 |
 ---
 
+
+## 📚 Platform Engineering Notes
+
+| Topic | Guidance |
+| --- | --- |
+| Platform vs DevOps | Platform teams productize golden paths; DevOps embeds in delivery teams—skills overlap heavily. |
+| Managed K8s vs self-hosted | Managed for production SLAs; k3s homelab for learning control plane concepts cheaply. |
+| Terraform vs Pulumi | HCL ecosystem vs general-purpose languages—pick based on team skills and module reuse. |
+| GitOps prerequisites | Working CI, container registry, and observability before automating cluster sync. |
+| Incident readiness | Runbooks, dashboards, and practiced game days matter more than alert volume. |
+| Cost guardrails | Tag resources, set budgets, and review Infracost on every Terraform PR. |
+| Secrets hygiene | Short-lived credentials via OIDC beat long-lived keys in CI variables. |
+| Homelab safety | Segment IoT VLANs, patch hypervisors, and test backup restores quarterly. |
+| Career proof | Public repos with architecture diagrams beat certificates alone for platform roles. |
+| Ecosystem hub | Navigate sibling lists via [Awesome Resources](https://github.com/kirtiramchandani/awesome-resources). |
+
+---
+
 ## ❓ FAQ
 
 | Question | Answer |
