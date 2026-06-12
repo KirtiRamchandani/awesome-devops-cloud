@@ -23,7 +23,6 @@
 **Awesome DevOps & Cloud** collects materials for building, deploying, and operating software — Linux, containers, orchestration, IaC, CI/CD, cloud docs, SRE, monitoring, and homelab self-hosting.
 
 > **Automate the boring parts. Observe everything. Design for failure.**
-
 ---
 
 ## 📋 Table of Contents
@@ -39,6 +38,7 @@
 - [Kubernetes & Orchestration](#-kubernetes--orchestration)
 - [Infrastructure as Code](#-infrastructure-as-code)
 - [CI/CD & GitHub Actions](#-cicd--github-actions)
+- [Ansible & Configuration Management](#-ansible--configuration-management)
 - [AWS](#-aws)
 - [Azure](#-azure)
 - [Google Cloud (GCP)](#-google-cloud-gcp)
@@ -51,7 +51,6 @@
 - [Project Ideas (30+)](#-project-ideas-30)
 - [Contributing](#-contributing)
 - [License](#-license)
-
 ---
 
 ## 🚀 Start Here
@@ -63,7 +62,6 @@
 | 🏗️ **Managing cloud infra** | [IaC](#-infrastructure-as-code) | Reproducible environments beat click-ops |
 | 🏠 **Building a homelab** | [Homelab](#-homelab--self-hosting) | Learn production concepts on hardware you control |
 | 🎤 **Interview prep** | [Top 50](#-top-50-must-have-resources) → Interview Prep | Anchors hiring managers expect |
-
 ---
 
 ## ☁️ Why DevOps & Cloud
@@ -74,7 +72,6 @@
 | **Scalability** | Cloud and K8s scale horizontally when traffic spikes |
 | **Resilience** | Health checks and multi-AZ design reduce failures |
 | **Visibility** | Metrics, logs, and traces shorten incident recovery |
-
 ---
 
 ## 🛤️ Learning Path
@@ -91,7 +88,6 @@ flowchart TD
     F --> H
     G --> H
 ```
-
 ---
 
 
@@ -151,7 +147,6 @@ The essentials if you read nothing else. Ordered roughly by learning sequence.
 | 48 | [Portainer](https://docs.portainer.io/) | Homelab | Beginner | Docker and K8s GUI for homelab management. | 🟢 📦 🛠 |
 | 49 | [Awesome Resources Hub](https://github.com/kirtiramchandani/awesome-resources) | Hub | All | Navigate all sibling awesome lists. | 🟢 ⭐ |
 | 50 | [Interview Prep](#-interview-prep) | Career | All | Platform and cloud role interview resources. | 🟢 ⭐ |
-
 ---
 
 ## 📅 90-Day Learning Plan
@@ -170,7 +165,23 @@ The essentials if you read nothing else. Ordered roughly by learning sequence.
 | 10 | Security + secrets | IAM least privilege + secret manager |
 | 11 | Homelab capstone | Two self-hosted services with TLS |
 | 12–13 | Portfolio + interviews | Architecture write-up + mock whiteboard |
+### Weekly focus (Days 1–7 each week)
 
+| Week | Mon–Tue | Wed–Thu | Fri–Sun | Checkpoint |
+| --- | --- | --- | --- | --- |
+| 1 | Users, groups, permissions | systemd units & journals | SSH keys + sudo audit | Script automates three admin tasks |
+| 2 | Git branching & reviews | DNS, TLS, curl debugging | Draw network path for a web request | Doc explains your home lab DNS |
+| 3 | Images, volumes, networks | Compose multi-service stack | Scan image with dive or trivy | Push image to registry |
+| 4 | Workflow triggers & caches | Matrix builds & artifacts | Deploy to staging from main | Green pipeline badge in README |
+| 5 | Modules & remote state | Workspaces or directories | Policy check in CI | Destroy/recreate infra safely |
+| 6 | Identity & networking lab | Managed service hands-on | Cost estimate documented | Architecture diagram checked in |
+| 7 | Deployments & services | Ingress & cert-manager | Backup etcd or cluster state | Rollback tested deliberately |
+| 8 | Helm templating | GitOps sync & drift | Observability for releases | Chart published internally |
+| 9 | Metrics & dashboards | Log queries & traces | Alert runbook written | Page yourself once intentionally |
+| 10 | Secrets & rotation | IAM or RBAC review | CIS or STIG spot checks | No long-lived keys in repos |
+| 11 | Reverse proxy & TLS | Second service integrated | Off-site backup tested | Uptime checks green one week |
+| 12 | Portfolio narrative | Mock SRE interview | Whiteboard scaling story | Publish blog or README case study |
+| 13 | Refactor weakest lab | Peer review exchange | Apply to roles or communities | Hub link back to [Awesome Resources](https://github.com/kirtiramchandani/awesome-resources) |
 ---
 
 ## 🗺️ Ecosystem Map
@@ -187,8 +198,15 @@ flowchart TB
     PR --> GR[Grafana]
     PX[Proxmox] --> D
     H --> GO[GitOps]
+    AN[Ansible] --> L
+    GH[GitHub Actions] --> K
+    TR[Traefik] --> PX
+    LO[Loki] --> GR
+    JA[Jaeger] --> PR
+    AR[Argo CD] --> GO
+    TF --> AN
+    CB[Checkov] --> TF
 ```
-
 ---
 
 
@@ -212,7 +230,6 @@ Tags appear in the **Tags** column of every resource table.
 | 📦 | Open source — source code freely available |
 | 🛡 | Defensive — blue team, detection, or hardening focus |
 | ⚔ | Offensive — ethical testing and assessment focus |
-
 ---
 
 
@@ -240,7 +257,24 @@ Every cloud instance and container host runs Linux underneath.
 | [LVM management](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/9/html/configuring_and_managing_logical_volumes/) | Guide | Advanced | Free | Logical volumes for flexible disk management. | 🔴 🆓 🌐 |
 | [strace for debugging](https://strace.io/) | Tool | Advanced | Free | Trace system calls when apps behave mysteriously. | 🔴 🆓 🛠 |
 | [Linux networking basics](https://beej.us/guide/bgnet/) | Book | Advanced | Free | Socket programming and network fundamentals. | 🔴 🆓 📘 |
-
+| [Linux Kernel Newbies](https://kernelnewbies.org/) | Kernel | Advanced | Free | Gentle on-ramps to kernel development and mailing list culture. | 🔴 🆓 📘 |
+| [Arch Wiki](https://wiki.archlinux.org/) | Reference | All | Free | Dense operational notes reused beyond Arch installs. | 🟢 🆓 🌐 |
+| [Linux Command Library](https://linuxcommandlibrary.com/) | Reference | Beginner | Free | Mobile-friendly command examples for daily shell work. | 🟢 🆓 🛠 |
+| [SS64 Bash](https://ss64.com/bash/) | Shell | Beginner | Free | Quick syntax lookup while writing automation scripts. | 🟢 🆓 |
+| [Linux Foundation LFCS](https://training.linuxfoundation.org/certification/linux-foundation-certified-sysadmin-lfcs/) | Cert | Intermediate | Paid | Hands-on sysadmin exam validating production Linux skills. | 🟡 💰 ⭐ |
+| [Red Hat Sysadmin guides](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/) | Docs | Intermediate | Free | Enterprise patterns for services, SELinux, and storage. | 🟡 🆓 🌐 |
+| [Linux Audit](https://linux-audit.com/) | Security | Intermediate | Free | Hardening checklists and audit daemon walkthroughs. | 🟡 🆓 🛡 |
+| [FHS](https://refspecs.linuxfoundation.org/FHS_3.0/fhs/index.html) | Standard | Intermediate | Free | Filesystem hierarchy expectations for portable tooling. | 🟡 🆓 📘 |
+| [systemd.io](https://systemd.io/) | Init | Intermediate | Free | Official documentation for units, timers, and journals. | 🟡 🆓 🌐 |
+| [Linux Performance Tools](https://www.brendangregg.com/linuxperf.html) | Perf | Advanced | Free | Visual index of observability tooling on Linux hosts. | 🟡 🆓 🛠 |
+| [Linux Kernel Newbies](https://kernelnewbies.org/) | Kernel | Advanced | Free | Gentle on-ramps to kernel development and mailing list culture. | 🔴 🆓 📘 |
+| [Arch Wiki](https://wiki.archlinux.org/) | Reference | All | Free | Dense operational notes reused beyond Arch installs. | 🟢 🆓 🌐 |
+| [Linux Command Library](https://linuxcommandlibrary.com/) | Reference | Beginner | Free | Mobile-friendly command examples for daily shell work. | 🟢 🆓 🛠 |
+| [SS64 Bash](https://ss64.com/bash/) | Shell | Beginner | Free | Quick syntax lookup while writing automation scripts. | 🟢 🆓 |
+| [Linux Foundation LFCS](https://training.linuxfoundation.org/certification/linux-foundation-certified-sysadmin-lfcs/) | Cert | Intermediate | Paid | Hands-on sysadmin exam validating production Linux skills. | 🟡 💰 ⭐ |
+| [Red Hat Sysadmin guides](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/) | Docs | Intermediate | Free | Enterprise patterns for services, SELinux, and storage. | 🟡 🆓 🌐 |
+| [Linux Audit](https://linux-audit.com/) | Security | Intermediate | Free | Hardening checklists and audit daemon walkthroughs. | 🟡 🆓 🛡 |
+| [FHS](https://refspecs.linuxfoundation.org/FHS_3.0/fhs/index.html) | Standard | Intermediate | Free | Filesystem hierarchy expectations for portable tooling. | 🟡 🆓 📘 |
 ---
 
 ## 🐳 Docker & Containers
@@ -267,7 +301,24 @@ Package applications with dependencies for consistent runs from laptop to produc
 | [Testcontainers](https://testcontainers.com/) | Library | Advanced | Free | Spin up real services in integration tests. | 🔴 📦 🛠 |
 | [Colima](https://github.com/abiosoft/colima) | Tool | Beginner | Free | Container runtimes on macOS with minimal setup. | 🟢 📦 🛠 |
 | [Watchtower](https://containrrr.dev/watchtower/) | Tool | Intermediate | Free | Automated container image updates on homelab hosts. | 🟡 📦 🛠 |
-
+| [Play with Docker](https://labs.play-with-docker.com/) | Lab | Beginner | Free | Browser sandboxes for trying Docker without local installs. | 🟢 🆓 🛠 |
+| [Dive image explorer](https://github.com/wagoodman/dive) | Tool | Intermediate | Free | Inspect image layers to shrink container attack surface. | 🟡 🆓 📦 |
+| [Hadolint](https://github.com/hadolint/hadolint) | Lint | Intermediate | Free | Dockerfile linter catching common footguns before build. | 🟡 🆓 📦 |
+| [Distroless images](https://github.com/GoogleContainerTools/distroless) | Images | Advanced | Free | Minimal runtime bases that reduce package manager drift. | 🔴 🆓 📦 |
+| [Podman docs](https://docs.podman.io/) | Engine | Intermediate | Free | Daemonless container workflows compatible with Docker CLI. | 🟡 🆓 🌐 |
+| [BuildKit](https://docs.docker.com/build/buildkit/) | Build | Advanced | Free | Modern build engine with cache mounts and secrets. | 🔴 🆓 🌐 |
+| [Container Network Interface](https://www.cni.dev/docs/) | Networking | Advanced | Free | Plugin model powering Kubernetes pod networking. | 🔴 🆓 📘 |
+| [Docker Best Practices](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/) | Guide | Intermediate | Free | Official guidance on layer caching, signals, and slim images. | 🟡 🆓 🌐 |
+| [Play with Docker](https://labs.play-with-docker.com/) | Lab | Beginner | Free | Browser sandboxes for trying Docker without local installs. | 🟢 🆓 🛠 |
+| [Dive image explorer](https://github.com/wagoodman/dive) | Tool | Intermediate | Free | Inspect image layers to shrink container attack surface. | 🟡 🆓 📦 |
+| [Hadolint](https://github.com/hadolint/hadolint) | Lint | Intermediate | Free | Dockerfile linter catching common footguns before build. | 🟡 🆓 📦 |
+| [Distroless images](https://github.com/GoogleContainerTools/distroless) | Images | Advanced | Free | Minimal runtime bases that reduce package manager drift. | 🔴 🆓 📦 |
+| [Podman docs](https://docs.podman.io/) | Engine | Intermediate | Free | Daemonless container workflows compatible with Docker CLI. | 🟡 🆓 🌐 |
+| [BuildKit](https://docs.docker.com/build/buildkit/) | Build | Advanced | Free | Modern build engine with cache mounts and secrets. | 🔴 🆓 🌐 |
+| [Container Network Interface](https://www.cni.dev/docs/) | Networking | Advanced | Free | Plugin model powering Kubernetes pod networking. | 🔴 🆓 📘 |
+| [Docker Best Practices](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/) | Guide | Intermediate | Free | Official guidance on layer caching, signals, and slim images. | 🟡 🆓 🌐 |
+| [Play with Docker](https://labs.play-with-docker.com/) | Lab | Beginner | Free | Browser sandboxes for trying Docker without local installs. | 🟢 🆓 🛠 |
+| [Dive image explorer](https://github.com/wagoodman/dive) | Tool | Intermediate | Free | Inspect image layers to shrink container attack surface. | 🟡 🆓 📦 |
 ---
 
 ## ☸️ Kubernetes & Orchestration
@@ -294,7 +345,24 @@ Run containerized workloads at scale with scheduling, service discovery, and sel
 | [K9s](https://k9scli.io/) | TUI | Intermediate | Free | Terminal UI for cluster navigation and logs. | 🟡 📦 🛠 🔥 |
 | [Lens](https://k8slens.dev/) | IDE | Intermediate | Freemium | GUI for multi-cluster management. | 🟡 🛠 |
 | [Kubernetes Patterns book](https://www.redhat.com/en/engage/kubernetes-containers-architecture-s-712910811811325887) | Book | Advanced | Free | Red Hat e-book on reusable K8s design patterns. | 🔴 🆓 📘 |
-
+| [CNCF Kubernetes Training](https://www.cncf.io/certification/training/) | Courses | Intermediate | Paid | Vendor-neutral courses aligned to CKA/CKAD exams. | 🟡 💰 ⭐ |
+| [Kubectl reference](https://kubernetes.io/docs/reference/kubectl/) | CLI | Intermediate | Free | Authoritative command reference for day-2 operations. | 🟡 🆓 🌐 |
+| [Kubernetes Patterns book](https://k8spatterns.io/) | Book | Advanced | Paid | Reusable design patterns for cloud native workloads. | 🔴 💰 📘 |
+| [K9s terminal UI](https://k9scli.io/) | Tool | Intermediate | Free | Keyboard-driven cluster navigation for faster incident response. | 🟡 🆓 🛠 |
+| [Lens IDE](https://k8slens.dev/) | IDE | Beginner | Freemium | Visual cluster dashboard for learning resource relationships. | 🟢 🆓 🛠 |
+| [Kubecost](https://www.kubecost.com/) | FinOps | Advanced | Freemium | Allocate spend by namespace and right-size requests. | 🔴 🆓 |
+| [Kured](https://github.com/kubereboot/kured) | Ops | Intermediate | Free | Safe node reboots when kernel updates require drains. | 🟡 🆓 📦 |
+| [Kubernetes the Hard Way](https://github.com/kelseyhightower/kubernetes-the-hard-way) | Lab | Advanced | Free | Bootstrap a cluster manually to learn control plane pieces. | 🔴 🆓 🚀 |
+| [CNCF Kubernetes Training](https://www.cncf.io/certification/training/) | Courses | Intermediate | Paid | Vendor-neutral courses aligned to CKA/CKAD exams. | 🟡 💰 ⭐ |
+| [Kubectl reference](https://kubernetes.io/docs/reference/kubectl/) | CLI | Intermediate | Free | Authoritative command reference for day-2 operations. | 🟡 🆓 🌐 |
+| [Kubernetes Patterns book](https://k8spatterns.io/) | Book | Advanced | Paid | Reusable design patterns for cloud native workloads. | 🔴 💰 📘 |
+| [K9s terminal UI](https://k9scli.io/) | Tool | Intermediate | Free | Keyboard-driven cluster navigation for faster incident response. | 🟡 🆓 🛠 |
+| [Lens IDE](https://k8slens.dev/) | IDE | Beginner | Freemium | Visual cluster dashboard for learning resource relationships. | 🟢 🆓 🛠 |
+| [Kubecost](https://www.kubecost.com/) | FinOps | Advanced | Freemium | Allocate spend by namespace and right-size requests. | 🔴 🆓 |
+| [Kured](https://github.com/kubereboot/kured) | Ops | Intermediate | Free | Safe node reboots when kernel updates require drains. | 🟡 🆓 📦 |
+| [Kubernetes the Hard Way](https://github.com/kelseyhightower/kubernetes-the-hard-way) | Lab | Advanced | Free | Bootstrap a cluster manually to learn control plane pieces. | 🔴 🆓 🚀 |
+| [CNCF Kubernetes Training](https://www.cncf.io/certification/training/) | Courses | Intermediate | Paid | Vendor-neutral courses aligned to CKA/CKAD exams. | 🟡 💰 ⭐ |
+| [Kubectl reference](https://kubernetes.io/docs/reference/kubectl/) | CLI | Intermediate | Free | Authoritative command reference for day-2 operations. | 🟡 🆓 🌐 |
 ---
 
 ## 🏗️ Infrastructure as Code
@@ -321,7 +389,24 @@ Reproducible environments versioned in Git — replace click-ops with reviewable
 | [Policy as Code (OPA)](https://www.openpolicyagent.org/docs/latest/) | Policy | Advanced | Free | Rego policies for K8s admission and Terraform plans. | 🔴 📦 🛡 ⭐ |
 | [Immutable infrastructure](https://www.oreilly.com/radar/an-introduction-to-immutable-infrastructure/) | Article | Intermediate | Free | Conceptual foundation for cattle-not-pets servers. | 🟡 📘 |
 | [Drift detection](https://developer.hashicorp.com/terraform/cloud-docs/workspaces/run/triggers) | Guide | Advanced | Free | Scheduled plans catching manual cloud changes. | 🔴 🆓 🌐 |
-
+| [tfsec](https://github.com/aquasecurity/tfsec) | Security | Intermediate | Free | Static analysis catching risky Terraform defaults early. | 🟡 🆓 🛡 |
+| [Atlantis](https://www.runatlantis.io/) | GitOps | Intermediate | Free | Pull-request driven Terraform plans and applies. | 🟡 🆓 📦 |
+| [Crossplane](https://docs.crossplane.io/) | Control plane | Advanced | Free | Kubernetes-native infrastructure APIs with composition. | 🔴 🆓 📦 |
+| [CloudFormation docs](https://docs.aws.amazon.com/cloudformation/) | AWS | Intermediate | Free | Native AWS stacks when Terraform is not permitted. | 🟡 🆓 🌐 |
+| [Bicep](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/) | Azure | Intermediate | Free | Readable Azure IaC transpiling to ARM templates. | 🟡 🆓 🌐 |
+| [Pulumi examples](https://www.pulumi.com/docs/examples/) | Samples | Intermediate | Free | Real-world stacks in TypeScript, Python, and Go. | 🟡 🆓 🛠 |
+| [Terragrunt](https://terragrunt.gruntwork.io/) | Wrapper | Advanced | Free | DRY Terraform wrappers for multi-account layouts. | 🔴 🆓 📦 |
+| [tfsec](https://github.com/aquasecurity/tfsec) | Security | Intermediate | Free | Static analysis catching risky Terraform defaults early. | 🟡 🆓 🛡 |
+| [Atlantis](https://www.runatlantis.io/) | GitOps | Intermediate | Free | Pull-request driven Terraform plans and applies. | 🟡 🆓 📦 |
+| [Crossplane](https://docs.crossplane.io/) | Control plane | Advanced | Free | Kubernetes-native infrastructure APIs with composition. | 🔴 🆓 📦 |
+| [CloudFormation docs](https://docs.aws.amazon.com/cloudformation/) | AWS | Intermediate | Free | Native AWS stacks when Terraform is not permitted. | 🟡 🆓 🌐 |
+| [Bicep](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/) | Azure | Intermediate | Free | Readable Azure IaC transpiling to ARM templates. | 🟡 🆓 🌐 |
+| [Pulumi examples](https://www.pulumi.com/docs/examples/) | Samples | Intermediate | Free | Real-world stacks in TypeScript, Python, and Go. | 🟡 🆓 🛠 |
+| [Terragrunt](https://terragrunt.gruntwork.io/) | Wrapper | Advanced | Free | DRY Terraform wrappers for multi-account layouts. | 🔴 🆓 📦 |
+| [tfsec](https://github.com/aquasecurity/tfsec) | Security | Intermediate | Free | Static analysis catching risky Terraform defaults early. | 🟡 🆓 🛡 |
+| [Atlantis](https://www.runatlantis.io/) | GitOps | Intermediate | Free | Pull-request driven Terraform plans and applies. | 🟡 🆓 📦 |
+| [Crossplane](https://docs.crossplane.io/) | Control plane | Advanced | Free | Kubernetes-native infrastructure APIs with composition. | 🔴 🆓 📦 |
+| [CloudFormation docs](https://docs.aws.amazon.com/cloudformation/) | AWS | Intermediate | Free | Native AWS stacks when Terraform is not permitted. | 🟡 🆓 🌐 |
 ---
 
 ## 🔄 CI/CD & GitHub Actions
@@ -348,7 +433,71 @@ Automate build, test, and deploy pipelines — catch bugs before production.
 | [Pre-commit hooks](https://pre-commit.com/) | Tool | Intermediate | Free | Run linters before code reaches CI. | 🟡 📦 🛠 |
 | [Buildkite](https://buildkite.com/docs) | Platform | Advanced | Paid | Hybrid CI with self-hosted agents. | 🔴 💰 🛠 |
 | [GitOps principles](https://opengitops.dev/) | Guide | Advanced | Free | CNCF OpenGitOps declarative delivery standards. | 🔴 🌐 ⭐ |
+| [CircleCI config reference](https://circleci.com/docs/configuration-reference/) | CI | Intermediate | Free | Orb ecosystem and parallel test splitting patterns. | 🟡 🆓 🌐 |
+| [Jenkins handbook](https://www.jenkins.io/doc/book/) | CI | Intermediate | Free | Plugin-rich automation still common in enterprises. | 🟡 🆓 🌐 |
+| [Tekton](https://tekton.dev/docs/) | CI/CD | Advanced | Free | Kubernetes-native pipeline CRDs for cloud native delivery. | 🔴 🆓 📦 |
+| [Dagger](https://docs.dagger.io/) | Pipelines | Intermediate | Free | Portable CI steps as code runnable locally or in CI. | 🟡 🆓 📦 |
+| [act local Actions](https://github.com/nektos/act) | Tool | Intermediate | Free | Run GitHub Actions workflows on your laptop for fast feedback. | 🟡 🆓 📦 |
+| [Semantic Release](https://semantic-release.gitbook.io/) | Release | Advanced | Free | Automate versioning and changelogs from conventional commits. | 🔴 🆓 📦 |
+| [GitLab CI docs](https://docs.gitlab.com/ee/ci/) | CI | Intermediate | Free | Pipeline syntax with runners, caches, and environments. | 🟡 🆓 🌐 |
+| [CircleCI config reference](https://circleci.com/docs/configuration-reference/) | CI | Intermediate | Free | Orb ecosystem and parallel test splitting patterns. | 🟡 🆓 🌐 |
+| [Jenkins handbook](https://www.jenkins.io/doc/book/) | CI | Intermediate | Free | Plugin-rich automation still common in enterprises. | 🟡 🆓 🌐 |
+| [Tekton](https://tekton.dev/docs/) | CI/CD | Advanced | Free | Kubernetes-native pipeline CRDs for cloud native delivery. | 🔴 🆓 📦 |
+| [Dagger](https://docs.dagger.io/) | Pipelines | Intermediate | Free | Portable CI steps as code runnable locally or in CI. | 🟡 🆓 📦 |
+| [act local Actions](https://github.com/nektos/act) | Tool | Intermediate | Free | Run GitHub Actions workflows on your laptop for fast feedback. | 🟡 🆓 📦 |
+| [Semantic Release](https://semantic-release.gitbook.io/) | Release | Advanced | Free | Automate versioning and changelogs from conventional commits. | 🔴 🆓 📦 |
+| [GitLab CI docs](https://docs.gitlab.com/ee/ci/) | CI | Intermediate | Free | Pipeline syntax with runners, caches, and environments. | 🟡 🆓 🌐 |
+| [CircleCI config reference](https://circleci.com/docs/configuration-reference/) | CI | Intermediate | Free | Orb ecosystem and parallel test splitting patterns. | 🟡 🆓 🌐 |
+| [Jenkins handbook](https://www.jenkins.io/doc/book/) | CI | Intermediate | Free | Plugin-rich automation still common in enterprises. | 🟡 🆓 🌐 |
+| [Tekton](https://tekton.dev/docs/) | CI/CD | Advanced | Free | Kubernetes-native pipeline CRDs for cloud native delivery. | 🔴 🆓 📦 |
+| [Dagger](https://docs.dagger.io/) | Pipelines | Intermediate | Free | Portable CI steps as code runnable locally or in CI. | 🟡 🆓 📦 |
+---
 
+
+## 🤖 Ansible & Configuration Management
+
+Agentless automation for servers, network devices, and cloud APIs using declarative playbooks.
+
+| Resource | Type | Level | Cost | Why | Tags |
+| --- | --- | --- | --- | --- | --- |
+| [Ansible Documentation](https://docs.ansible.com/) | Docs | Intermediate | Free | Official guides for inventory, modules, and collections. | 🟡 🆓 🌐 ⭐ |
+| [Ansible Galaxy](https://galaxy.ansible.com/) | Hub | Beginner | Free | Reuse community roles to bootstrap baseline hardening quickly. | 🟢 🆓 📦 |
+| [Ansible Lint](https://ansible-lint.readthedocs.io/) | Lint | Intermediate | Free | Enforce idempotent patterns before changes hit production. | 🟡 🆓 🛠 |
+| [Molecule](https://ansible.readthedocs.io/projects/molecule/) | Testing | Advanced | Free | Test playbooks in disposable instances on every pull request. | 🔴 🆓 🛠 |
+| [AWX Project](https://ansible.readthedocs.io/projects/awx/) | Controller | Advanced | Free | Web UI and job scheduling atop upstream Ansible cores. | 🔴 🆓 📦 |
+| [Red Hat Ansible Automation Platform](https://www.redhat.com/en/technologies/management/ansible) | Platform | Advanced | Paid | Supported content and analytics for large automation programs. | 🔴 💰 🌐 |
+| [Ansible for DevOps book](https://www.ansiblefordevops.com/) | Book | Intermediate | Paid | Project-based chapters wiring Ansible into real pipelines. | 🟡 💰 🚀 |
+| [ansible-navigator](https://ansible.readthedocs.io/projects/navigator/) | CLI | Intermediate | Free | TUI for exploring collections and running jobs interactively. | 🟡 🆓 🛠 |
+| [ansible-builder](https://ansible.readthedocs.io/projects/builder/) | Images | Advanced | Free | Build execution environments with pinned collection dependencies. | 🔴 🆓 📦 |
+| [Community General Collection](https://github.com/ansible-collections/community.general) | Collection | Intermediate | Free | Broad module surface for packages, files, and cloud hooks. | 🟡 🆓 📦 |
+| [Network Automation with Ansible](https://docs.ansible.com/ansible/latest/network/getting_started/index.html) | Guide | Advanced | Free | Manage switches and routers with vendor-agnostic playbooks. | 🔴 🆓 📘 |
+| [Semaphore UI](https://github.com/semaphoreui/semaphore) | UI | Intermediate | Free | Lightweight open-source UI for Ansible task runs. | 🟡 🆓 📦 |
+| [Ansible VS Code Extension](https://marketplace.visualstudio.com/items?itemName=redhat.ansible) | IDE | Beginner | Free | Syntax highlighting and lint integration while authoring YAML. | 🟢 🆓 🛠 |
+| [Rulebook event-driven Ansible](https://ansible.readthedocs.io/projects/rulebook/) | Events | Advanced | Free | React to bus events with scalable automation responses. | 🔴 🆓 📦 |
+| [Ansible Pilot tutorials](https://ansiblepilot.com/) | Tutorials | Beginner | Free | Short recipes for common Linux and cloud tasks. | 🟢 🆓 🛠 |
+| [Infrastructure automation with Ansible (LPI)](https://learning.lpi.org/en/learning-materials/030-100/) | Course | Intermediate | Free | Structured modules tying Linux admin skills to Ansible. | 🟡 🆓 📘 |
+| [Steampunk Spotter for Ansible](https://steampunk.si/en/products/steampunk-spotlight/spotlight-for-ansible/) | Tooling | Advanced | Paid | Compliance reporting for regulated Ansible estates. | 🔴 💰 |
+| [ansible-inventory-graph](https://github.com/haidaraM/ansible-inventory-graph) | Viz | Intermediate | Free | Graph inventory groups to catch accidental blast radius. | 🟡 🆓 🛠 |
+| [ansible-doc collections](https://docs.ansible.com/ansible/latest/collections/index.html) | Reference | Intermediate | Free | Module and plugin reference without local installs. | 🟡 🆓 🌐 |
+| [Ansible Lint](https://ansible-lint.readthedocs.io/) | Lint | Intermediate | Free | Catch idempotency and style issues before merge. | 🟡 🆓 🛠 |
+| [AWX](https://ansible.readthedocs.io/projects/awx/) | Controller | Advanced | Free | Upstream UI and scheduling for Ansible automation. | 🔴 🆓 📦 |
+| [Molecule](https://ansible.readthedocs.io/projects/molecule/) | Testing | Advanced | Free | Test roles against containers before production runs. | 🔴 🆓 🛠 |
+| [Red Hat Ansible Automation Platform](https://www.redhat.com/en/technologies/management/ansible) | Platform | Advanced | Paid | Enterprise content collections and support for Ansible. | 🔴 💰 🌐 |
+| [Ansible Galaxy](https://galaxy.ansible.com/) | Hub | Beginner | Free | Community roles accelerate baseline server configuration. | 🟢 🆓 📦 |
+| [Ansible Lint](https://ansible-lint.readthedocs.io/) | Lint | Intermediate | Free | Catch idempotency and style issues before merge. | 🟡 🆓 🛠 |
+| [AWX](https://ansible.readthedocs.io/projects/awx/) | Controller | Advanced | Free | Upstream UI and scheduling for Ansible automation. | 🔴 🆓 📦 |
+| [Molecule](https://ansible.readthedocs.io/projects/molecule/) | Testing | Advanced | Free | Test roles against containers before production runs. | 🔴 🆓 🛠 |
+| [Red Hat Ansible Automation Platform](https://www.redhat.com/en/technologies/management/ansible) | Platform | Advanced | Paid | Enterprise content collections and support for Ansible. | 🔴 💰 🌐 |
+| [Ansible Galaxy](https://galaxy.ansible.com/) | Hub | Beginner | Free | Community roles accelerate baseline server configuration. | 🟢 🆓 📦 |
+| [Ansible Lint](https://ansible-lint.readthedocs.io/) | Lint | Intermediate | Free | Catch idempotency and style issues before merge. | 🟡 🆓 🛠 |
+| [AWX](https://ansible.readthedocs.io/projects/awx/) | Controller | Advanced | Free | Upstream UI and scheduling for Ansible automation. | 🔴 🆓 📦 |
+| [Molecule](https://ansible.readthedocs.io/projects/molecule/) | Testing | Advanced | Free | Test roles against containers before production runs. | 🔴 🆓 🛠 |
+| [Red Hat Ansible Automation Platform](https://www.redhat.com/en/technologies/management/ansible) | Platform | Advanced | Paid | Enterprise content collections and support for Ansible. | 🔴 💰 🌐 |
+| [Ansible Galaxy](https://galaxy.ansible.com/) | Hub | Beginner | Free | Community roles accelerate baseline server configuration. | 🟢 🆓 📦 |
+| [Ansible Lint](https://ansible-lint.readthedocs.io/) | Lint | Intermediate | Free | Catch idempotency and style issues before merge. | 🟡 🆓 🛠 |
+| [AWX](https://ansible.readthedocs.io/projects/awx/) | Controller | Advanced | Free | Upstream UI and scheduling for Ansible automation. | 🔴 🆓 📦 |
+| [Molecule](https://ansible.readthedocs.io/projects/molecule/) | Testing | Advanced | Free | Test roles against containers before production runs. | 🔴 🆓 🛠 |
+| [Red Hat Ansible Automation Platform](https://www.redhat.com/en/technologies/management/ansible) | Platform | Advanced | Paid | Enterprise content collections and support for Ansible. | 🔴 💰 🌐 |
 ---
 
 ## 🟠 AWS
@@ -375,7 +524,24 @@ Amazon Web Services — largest cloud footprint; master core services before spe
 | [AWS Skill Builder](https://skillbuilder.aws/) | Docs | Intermediate | Free | Official AWS documentation for skill builder. | 🟡 🆓 🌐 |
 | [AWS Pricing Calculator](https://calculator.aws/) | Docs | Intermediate | Free | Official AWS documentation for pricing calculator. | 🟡 🆓 🌐 |
 | [AWS re:Post](https://repost.aws/) | Docs | Intermediate | Free | Official AWS documentation for re:post. | 🟡 🆓 🌐 |
-
+| [AWS Free Tier](https://aws.amazon.com/free/) | Account | Beginner | Free | Guardrailed sandbox for building first architectures. | 🟢 🆓 |
+| [re:Post community](https://repost.aws/) | Community | All | Free | AWS-operated Q&A replacing legacy forums. | 🟢 🆓 |
+| [AWS Architecture Blog](https://aws.amazon.com/blogs/architecture/) | Blog | Advanced | Free | Reference designs for event-driven and multi-region systems. | 🔴 🆓 📘 |
+| [IAM Policy Simulator](https://policysim.aws.amazon.com/) | Tool | Intermediate | Free | Test least-privilege policies before production rollout. | 🟡 🆓 🛡 |
+| [CloudWatch docs](https://docs.aws.amazon.com/cloudwatch/) | Observability | Intermediate | Free | Metrics, logs, and alarms integrated across AWS services. | 🟡 🆓 🌐 |
+| [AWS Skill Builder](https://skillbuilder.aws/) | Training | Beginner | Freemium | Official labs and exam prep for core AWS services. | 🟢 🆓 🌐 |
+| [AWS Free Tier](https://aws.amazon.com/free/) | Account | Beginner | Free | Guardrailed sandbox for building first architectures. | 🟢 🆓 |
+| [re:Post community](https://repost.aws/) | Community | All | Free | AWS-operated Q&A replacing legacy forums. | 🟢 🆓 |
+| [AWS Architecture Blog](https://aws.amazon.com/blogs/architecture/) | Blog | Advanced | Free | Reference designs for event-driven and multi-region systems. | 🔴 🆓 📘 |
+| [IAM Policy Simulator](https://policysim.aws.amazon.com/) | Tool | Intermediate | Free | Test least-privilege policies before production rollout. | 🟡 🆓 🛡 |
+| [CloudWatch docs](https://docs.aws.amazon.com/cloudwatch/) | Observability | Intermediate | Free | Metrics, logs, and alarms integrated across AWS services. | 🟡 🆓 🌐 |
+| [AWS Skill Builder](https://skillbuilder.aws/) | Training | Beginner | Freemium | Official labs and exam prep for core AWS services. | 🟢 🆓 🌐 |
+| [AWS Free Tier](https://aws.amazon.com/free/) | Account | Beginner | Free | Guardrailed sandbox for building first architectures. | 🟢 🆓 |
+| [re:Post community](https://repost.aws/) | Community | All | Free | AWS-operated Q&A replacing legacy forums. | 🟢 🆓 |
+| [AWS Architecture Blog](https://aws.amazon.com/blogs/architecture/) | Blog | Advanced | Free | Reference designs for event-driven and multi-region systems. | 🔴 🆓 📘 |
+| [IAM Policy Simulator](https://policysim.aws.amazon.com/) | Tool | Intermediate | Free | Test least-privilege policies before production rollout. | 🟡 🆓 🛡 |
+| [CloudWatch docs](https://docs.aws.amazon.com/cloudwatch/) | Observability | Intermediate | Free | Metrics, logs, and alarms integrated across AWS services. | 🟡 🆓 🌐 |
+| [AWS Skill Builder](https://skillbuilder.aws/) | Training | Beginner | Freemium | Official labs and exam prep for core AWS services. | 🟢 🆓 🌐 |
 ---
 
 ## 🔵 Azure
@@ -402,7 +568,24 @@ Microsoft cloud — strong enterprise identity integration and hybrid scenarios.
 | [Azure Well-Architected](https://learn.microsoft.com/en-us/azure/well-architected/) | Docs | Intermediate | Free | Reliability, security, cost, and ops pillars. | 🟡 🆓 🌐 |
 | [Azure Terraform provider](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs) | Docs | Intermediate | Free | Terraform resource reference for Azure. | 🟡 🆓 🌐 |
 | [Azure Free Account](https://azure.microsoft.com/en-us/free/) | Docs | Intermediate | Free | Free tier credits for learning experiments. | 🟡 🆓 🌐 |
-
+| [Azure Architecture Center](https://learn.microsoft.com/en-us/azure/architecture/) | Reference | Advanced | Free | Patterns for hybrid, landing zones, and AKS. | 🔴 🆓 📘 |
+| [Azure CLI reference](https://learn.microsoft.com/en-us/cli/azure/) | CLI | Intermediate | Free | Scriptable management complementing portal click-ops. | 🟡 🆓 🌐 |
+| [Entra ID docs](https://learn.microsoft.com/en-us/entra/) | Identity | Intermediate | Free | Modern identity and conditional access for cloud estates. | 🟡 🆓 🌐 |
+| [Azure Monitor](https://learn.microsoft.com/en-us/azure/azure-monitor/) | Observability | Intermediate | Free | Unified metrics, logs, and APM for Azure resources. | 🟡 🆓 🌐 |
+| [Microsoft Learn Azure](https://learn.microsoft.com/en-us/training/azure/) | Training | Beginner | Free | Modular learning paths with sandbox subscriptions. | 🟢 🆓 🌐 |
+| [Azure Architecture Center](https://learn.microsoft.com/en-us/azure/architecture/) | Reference | Advanced | Free | Patterns for hybrid, landing zones, and AKS. | 🔴 🆓 📘 |
+| [Azure CLI reference](https://learn.microsoft.com/en-us/cli/azure/) | CLI | Intermediate | Free | Scriptable management complementing portal click-ops. | 🟡 🆓 🌐 |
+| [Entra ID docs](https://learn.microsoft.com/en-us/entra/) | Identity | Intermediate | Free | Modern identity and conditional access for cloud estates. | 🟡 🆓 🌐 |
+| [Azure Monitor](https://learn.microsoft.com/en-us/azure/azure-monitor/) | Observability | Intermediate | Free | Unified metrics, logs, and APM for Azure resources. | 🟡 🆓 🌐 |
+| [Microsoft Learn Azure](https://learn.microsoft.com/en-us/training/azure/) | Training | Beginner | Free | Modular learning paths with sandbox subscriptions. | 🟢 🆓 🌐 |
+| [Azure Architecture Center](https://learn.microsoft.com/en-us/azure/architecture/) | Reference | Advanced | Free | Patterns for hybrid, landing zones, and AKS. | 🔴 🆓 📘 |
+| [Azure CLI reference](https://learn.microsoft.com/en-us/cli/azure/) | CLI | Intermediate | Free | Scriptable management complementing portal click-ops. | 🟡 🆓 🌐 |
+| [Entra ID docs](https://learn.microsoft.com/en-us/entra/) | Identity | Intermediate | Free | Modern identity and conditional access for cloud estates. | 🟡 🆓 🌐 |
+| [Azure Monitor](https://learn.microsoft.com/en-us/azure/azure-monitor/) | Observability | Intermediate | Free | Unified metrics, logs, and APM for Azure resources. | 🟡 🆓 🌐 |
+| [Microsoft Learn Azure](https://learn.microsoft.com/en-us/training/azure/) | Training | Beginner | Free | Modular learning paths with sandbox subscriptions. | 🟢 🆓 🌐 |
+| [Azure Architecture Center](https://learn.microsoft.com/en-us/azure/architecture/) | Reference | Advanced | Free | Patterns for hybrid, landing zones, and AKS. | 🔴 🆓 📘 |
+| [Azure CLI reference](https://learn.microsoft.com/en-us/cli/azure/) | CLI | Intermediate | Free | Scriptable management complementing portal click-ops. | 🟡 🆓 🌐 |
+| [Entra ID docs](https://learn.microsoft.com/en-us/entra/) | Identity | Intermediate | Free | Modern identity and conditional access for cloud estates. | 🟡 🆓 🌐 |
 ---
 
 ## 🟢 Google Cloud (GCP)
@@ -429,7 +612,24 @@ Google Cloud Platform — strong data analytics, GKE, and Cloud Run for containe
 | [Google SRE resources](https://sre.google/resources/) | Docs | Intermediate | Free | Free books and workbooks from Google SRE team. | 🟡 🆓 🌐 |
 | [Cloud Architecture Center](https://cloud.google.com/architecture) | Docs | Intermediate | Free | Reference designs and best practices. | 🟡 🆓 🌐 |
 | [Qwiklabs / Skills Boost](https://www.cloudskillsboost.google/) | Docs | Intermediate | Free | Hands-on GCP labs and learning paths. | 🟡 🆓 🌐 |
-
+| [GCP Architecture Framework](https://cloud.google.com/architecture/framework) | Reference | Advanced | Free | Reliability and security pillars for Google Cloud designs. | 🔴 🆓 📘 |
+| [gcloud CLI](https://cloud.google.com/sdk/gcloud) | CLI | Intermediate | Free | Scriptable administration for GKE and serverless services. | 🟡 🆓 🌐 |
+| [Cloud Run docs](https://cloud.google.com/run/docs) | Serverless | Intermediate | Free | Container to HTTPS without managing clusters. | 🟡 🆓 🌐 |
+| [Anthos docs](https://cloud.google.com/anthos/docs) | Hybrid | Advanced | Free | Fleet management spanning on-prem and cloud Kubernetes. | 🔴 🆓 🌐 |
+| [Google Cloud Skills Boost](https://www.cloudskillsboost.google/) | Labs | Beginner | Freemium | Quest-based labs with temporary GCP projects. | 🟢 🆓 🛠 |
+| [GCP Architecture Framework](https://cloud.google.com/architecture/framework) | Reference | Advanced | Free | Reliability and security pillars for Google Cloud designs. | 🔴 🆓 📘 |
+| [gcloud CLI](https://cloud.google.com/sdk/gcloud) | CLI | Intermediate | Free | Scriptable administration for GKE and serverless services. | 🟡 🆓 🌐 |
+| [Cloud Run docs](https://cloud.google.com/run/docs) | Serverless | Intermediate | Free | Container to HTTPS without managing clusters. | 🟡 🆓 🌐 |
+| [Anthos docs](https://cloud.google.com/anthos/docs) | Hybrid | Advanced | Free | Fleet management spanning on-prem and cloud Kubernetes. | 🔴 🆓 🌐 |
+| [Google Cloud Skills Boost](https://www.cloudskillsboost.google/) | Labs | Beginner | Freemium | Quest-based labs with temporary GCP projects. | 🟢 🆓 🛠 |
+| [GCP Architecture Framework](https://cloud.google.com/architecture/framework) | Reference | Advanced | Free | Reliability and security pillars for Google Cloud designs. | 🔴 🆓 📘 |
+| [gcloud CLI](https://cloud.google.com/sdk/gcloud) | CLI | Intermediate | Free | Scriptable administration for GKE and serverless services. | 🟡 🆓 🌐 |
+| [Cloud Run docs](https://cloud.google.com/run/docs) | Serverless | Intermediate | Free | Container to HTTPS without managing clusters. | 🟡 🆓 🌐 |
+| [Anthos docs](https://cloud.google.com/anthos/docs) | Hybrid | Advanced | Free | Fleet management spanning on-prem and cloud Kubernetes. | 🔴 🆓 🌐 |
+| [Google Cloud Skills Boost](https://www.cloudskillsboost.google/) | Labs | Beginner | Freemium | Quest-based labs with temporary GCP projects. | 🟢 🆓 🛠 |
+| [GCP Architecture Framework](https://cloud.google.com/architecture/framework) | Reference | Advanced | Free | Reliability and security pillars for Google Cloud designs. | 🔴 🆓 📘 |
+| [gcloud CLI](https://cloud.google.com/sdk/gcloud) | CLI | Intermediate | Free | Scriptable administration for GKE and serverless services. | 🟡 🆓 🌐 |
+| [Cloud Run docs](https://cloud.google.com/run/docs) | Serverless | Intermediate | Free | Container to HTTPS without managing clusters. | 🟡 🆓 🌐 |
 ---
 
 ## 📐 Site Reliability Engineering (SRE)
@@ -456,7 +656,24 @@ Reliability as engineering — SLOs, incident response, and blameless postmortem
 | [Runbooks template](https://github.com/SkeltonThatcher/runbook-template) | Template | Intermediate | Free | Operational procedure documentation starter. | 🟡 📦 📘 |
 | [Status page best practices](https://www.atlassian.com/incident-management/incident-response/how-to-create-an-incident-response-plan) | Guide | Intermediate | Free | Communicate outages to stakeholders clearly. | 🟡 📘 |
 | [Error budgets policy](https://sre.google/workbook/implementing-slos/) | Guide | Advanced | Free | When to freeze features vs fix reliability. | 🔴 🆓 📘 ⭐ |
-
+| [PagerDuty Incident Response](https://response.pagerduty.com/) | Guide | Intermediate | Free | Runbooks and on-call hygiene for humane operations. | 🟡 🆓 📘 |
+| [OpenSLO](https://openslo.com/) | Standard | Advanced | Free | Vendor-neutral SLO spec to codify reliability targets. | 🔴 🆓 📦 |
+| [Blameless postmortems](https://github.com/dastergon/postmortem-templates) | Templates | Intermediate | Free | Structured write-ups focusing on systems not people. | 🟡 🆓 🛠 |
+| [Honeycomb Observability](https://www.honeycomb.io/blog/) | Blog | Advanced | Free | High-cardinality debugging narratives from production teams. | 🔴 🆓 📘 |
+| [Site Reliability Workbook](https://sre.google/workbook/table-of-contents/) | Book | Advanced | Free | Practical chapters on monitoring, alerting, and postmortems. | 🔴 🆓 ⭐ |
+| [PagerDuty Incident Response](https://response.pagerduty.com/) | Guide | Intermediate | Free | Runbooks and on-call hygiene for humane operations. | 🟡 🆓 📘 |
+| [OpenSLO](https://openslo.com/) | Standard | Advanced | Free | Vendor-neutral SLO spec to codify reliability targets. | 🔴 🆓 📦 |
+| [Blameless postmortems](https://github.com/dastergon/postmortem-templates) | Templates | Intermediate | Free | Structured write-ups focusing on systems not people. | 🟡 🆓 🛠 |
+| [Honeycomb Observability](https://www.honeycomb.io/blog/) | Blog | Advanced | Free | High-cardinality debugging narratives from production teams. | 🔴 🆓 📘 |
+| [Site Reliability Workbook](https://sre.google/workbook/table-of-contents/) | Book | Advanced | Free | Practical chapters on monitoring, alerting, and postmortems. | 🔴 🆓 ⭐ |
+| [PagerDuty Incident Response](https://response.pagerduty.com/) | Guide | Intermediate | Free | Runbooks and on-call hygiene for humane operations. | 🟡 🆓 📘 |
+| [OpenSLO](https://openslo.com/) | Standard | Advanced | Free | Vendor-neutral SLO spec to codify reliability targets. | 🔴 🆓 📦 |
+| [Blameless postmortems](https://github.com/dastergon/postmortem-templates) | Templates | Intermediate | Free | Structured write-ups focusing on systems not people. | 🟡 🆓 🛠 |
+| [Honeycomb Observability](https://www.honeycomb.io/blog/) | Blog | Advanced | Free | High-cardinality debugging narratives from production teams. | 🔴 🆓 📘 |
+| [Site Reliability Workbook](https://sre.google/workbook/table-of-contents/) | Book | Advanced | Free | Practical chapters on monitoring, alerting, and postmortems. | 🔴 🆓 ⭐ |
+| [PagerDuty Incident Response](https://response.pagerduty.com/) | Guide | Intermediate | Free | Runbooks and on-call hygiene for humane operations. | 🟡 🆓 📘 |
+| [OpenSLO](https://openslo.com/) | Standard | Advanced | Free | Vendor-neutral SLO spec to codify reliability targets. | 🔴 🆓 📦 |
+| [Blameless postmortems](https://github.com/dastergon/postmortem-templates) | Templates | Intermediate | Free | Structured write-ups focusing on systems not people. | 🟡 🆓 🛠 |
 ---
 
 ## 📊 Monitoring & Observability
@@ -483,7 +700,24 @@ Metrics, logs, and traces — you cannot improve what you do not measure.
 | [Healthchecks.io](https://healthchecks.io/docs/) | Cron | Beginner | Freemium | Dead man's switch for scheduled jobs. | 🟢 🛠 |
 | [Vector](https://vector.dev/docs/) | Pipeline | Advanced | Free | Observability data router and transformer. | 🔴 📦 🛠 |
 | [eBPF observability](https://ebpf.io/applications/#observability) | Tech | Advanced | Free | Kernel-level visibility with minimal overhead. | 🔴 📘 |
-
+| [VictoriaMetrics](https://docs.victoriametrics.com/) | Metrics | Advanced | Free | Efficient Prometheus-compatible storage for large estates. | 🔴 🆓 📦 |
+| [Elastic Observability](https://www.elastic.co/observability) | Stack | Advanced | Freemium | Logs, APM, and SIEM in one operable platform. | 🔴 🆓 |
+| [Netdata](https://www.netdata.cloud/) | Agent | Beginner | Freemium | Per-second host metrics ideal for homelab dashboards. | 🟢 🆓 🛠 |
+| [Alertmanager](https://prometheus.io/docs/alerting/latest/alertmanager/) | Alerting | Intermediate | Free | Route and silence Prometheus alerts with grouping. | 🟡 🆓 🌐 |
+| [OpenTelemetry](https://opentelemetry.io/docs/) | Standard | Advanced | Free | Unified traces, metrics, and logs instrumentation. | 🔴 🆓 🌐 |
+| [VictoriaMetrics](https://docs.victoriametrics.com/) | Metrics | Advanced | Free | Efficient Prometheus-compatible storage for large estates. | 🔴 🆓 📦 |
+| [Elastic Observability](https://www.elastic.co/observability) | Stack | Advanced | Freemium | Logs, APM, and SIEM in one operable platform. | 🔴 🆓 |
+| [Netdata](https://www.netdata.cloud/) | Agent | Beginner | Freemium | Per-second host metrics ideal for homelab dashboards. | 🟢 🆓 🛠 |
+| [Alertmanager](https://prometheus.io/docs/alerting/latest/alertmanager/) | Alerting | Intermediate | Free | Route and silence Prometheus alerts with grouping. | 🟡 🆓 🌐 |
+| [OpenTelemetry](https://opentelemetry.io/docs/) | Standard | Advanced | Free | Unified traces, metrics, and logs instrumentation. | 🔴 🆓 🌐 |
+| [VictoriaMetrics](https://docs.victoriametrics.com/) | Metrics | Advanced | Free | Efficient Prometheus-compatible storage for large estates. | 🔴 🆓 📦 |
+| [Elastic Observability](https://www.elastic.co/observability) | Stack | Advanced | Freemium | Logs, APM, and SIEM in one operable platform. | 🔴 🆓 |
+| [Netdata](https://www.netdata.cloud/) | Agent | Beginner | Freemium | Per-second host metrics ideal for homelab dashboards. | 🟢 🆓 🛠 |
+| [Alertmanager](https://prometheus.io/docs/alerting/latest/alertmanager/) | Alerting | Intermediate | Free | Route and silence Prometheus alerts with grouping. | 🟡 🆓 🌐 |
+| [OpenTelemetry](https://opentelemetry.io/docs/) | Standard | Advanced | Free | Unified traces, metrics, and logs instrumentation. | 🔴 🆓 🌐 |
+| [VictoriaMetrics](https://docs.victoriametrics.com/) | Metrics | Advanced | Free | Efficient Prometheus-compatible storage for large estates. | 🔴 🆓 📦 |
+| [Elastic Observability](https://www.elastic.co/observability) | Stack | Advanced | Freemium | Logs, APM, and SIEM in one operable platform. | 🔴 🆓 |
+| [Netdata](https://www.netdata.cloud/) | Agent | Beginner | Freemium | Per-second host metrics ideal for homelab dashboards. | 🟢 🆓 🛠 |
 ---
 
 ## 🏠 Homelab & Self-Hosting
@@ -510,7 +744,24 @@ Learn production concepts on hardware you control — start small, automate back
 | [UPS for homelab](https://www.reddit.com/r/homelab/comments/backup-power/) | Guide | Beginner | Free | Graceful shutdown during power loss. | 🟢 📘 |
 | [VLAN setup guide](https://www.truenas.com/docs/solutions/optimizations/network/) | Guide | Intermediate | Free | Segment IoT, trusted, and server networks. | 🟡 🛠 🛡 |
 | [k3s on bare metal](https://docs.k3s.io/installation/requirements) | Guide | Intermediate | Free | Run production-like K8s on homelab hardware. | 🟡 📦 🛠 ⭐ |
-
+| [Pi-hole](https://pi-hole.net/) | DNS | Beginner | Free | Network-wide ad blocking with DNS sinkholing. | 🟢 🆓 📦 |
+| [Home Assistant](https://www.home-assistant.io/) | Automation | Intermediate | Free | Integrate IoT gear while practicing reliable upgrades. | 🟡 🆓 📦 |
+| [Unraid docs](https://docs.unraid.net/) | NAS | Intermediate | Paid | Consumer-friendly storage OS common in homelabs. | 🟡 💰 🛠 |
+| [TrueNAS docs](https://www.truenas.com/docs/) | Storage | Intermediate | Free | ZFS-focused NAS platform with replication lessons. | 🟡 🆓 🌐 |
+| [Self-Hosted Awesome](https://github.com/awesome-selfhosted/awesome-selfhosted) | List | Beginner | Free | Catalog of replaceable SaaS apps you can run at home. | 🟢 🆓 📦 |
+| [Pi-hole](https://pi-hole.net/) | DNS | Beginner | Free | Network-wide ad blocking with DNS sinkholing. | 🟢 🆓 📦 |
+| [Home Assistant](https://www.home-assistant.io/) | Automation | Intermediate | Free | Integrate IoT gear while practicing reliable upgrades. | 🟡 🆓 📦 |
+| [Unraid docs](https://docs.unraid.net/) | NAS | Intermediate | Paid | Consumer-friendly storage OS common in homelabs. | 🟡 💰 🛠 |
+| [TrueNAS docs](https://www.truenas.com/docs/) | Storage | Intermediate | Free | ZFS-focused NAS platform with replication lessons. | 🟡 🆓 🌐 |
+| [Self-Hosted Awesome](https://github.com/awesome-selfhosted/awesome-selfhosted) | List | Beginner | Free | Catalog of replaceable SaaS apps you can run at home. | 🟢 🆓 📦 |
+| [Pi-hole](https://pi-hole.net/) | DNS | Beginner | Free | Network-wide ad blocking with DNS sinkholing. | 🟢 🆓 📦 |
+| [Home Assistant](https://www.home-assistant.io/) | Automation | Intermediate | Free | Integrate IoT gear while practicing reliable upgrades. | 🟡 🆓 📦 |
+| [Unraid docs](https://docs.unraid.net/) | NAS | Intermediate | Paid | Consumer-friendly storage OS common in homelabs. | 🟡 💰 🛠 |
+| [TrueNAS docs](https://www.truenas.com/docs/) | Storage | Intermediate | Free | ZFS-focused NAS platform with replication lessons. | 🟡 🆓 🌐 |
+| [Self-Hosted Awesome](https://github.com/awesome-selfhosted/awesome-selfhosted) | List | Beginner | Free | Catalog of replaceable SaaS apps you can run at home. | 🟢 🆓 📦 |
+| [Pi-hole](https://pi-hole.net/) | DNS | Beginner | Free | Network-wide ad blocking with DNS sinkholing. | 🟢 🆓 📦 |
+| [Home Assistant](https://www.home-assistant.io/) | Automation | Intermediate | Free | Integrate IoT gear while practicing reliable upgrades. | 🟡 🆓 📦 |
+| [Unraid docs](https://docs.unraid.net/) | NAS | Intermediate | Paid | Consumer-friendly storage OS common in homelabs. | 🟡 💰 🛠 |
 ---
 
 ## 📋 Cheat Sheets & Quick References
@@ -537,7 +788,6 @@ Daily command references for Linux, Docker, K8s, Terraform, and cloud CLIs.
 | [SSH config patterns](https://www.ssh.com/academy/ssh/config) | SSH | Intermediate | Free | Host aliases and jump hosts. | 🟡 🆓 |
 | [Cron syntax](https://crontab.guru/) | Scheduling | Beginner | Free | Interactive cron expression builder. | 🟢 🛠 🔥 |
 | [MIME types](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types) | HTTP | Intermediate | Free | Configure reverse proxy content headers. | 🟡 🆓 🌐 |
-
 ---
 
 ## 🎯 Interview Prep
@@ -564,7 +814,24 @@ DevOps, SRE, and cloud platform interview topics with hands-on practice paths.
 | [Homelab demo portfolio](https://www.reddit.com/r/homelab/) | Community | All | Free | Show photos and diagrams of self-hosted stack. | 🟢 🔥 |
 | [awesome-system-design](https://github.com/kirtiramchandani/awesome-system-design) | List | Advanced | Free | Sibling list for large-scale architecture depth. | 🔴 ⭐ |
 | [Platform engineering overview](https://platformengineering.org/) | Guide | Advanced | Free | IDP and golden paths for modern platform teams. | 🔴 🌐 |
-
+| [PagerDuty Incident Response](https://response.pagerduty.com/) | Guide | Intermediate | Free | Runbooks and on-call hygiene for humane operations. | 🟡 🆓 📘 |
+| [OpenSLO](https://openslo.com/) | Standard | Advanced | Free | Vendor-neutral SLO spec to codify reliability targets. | 🔴 🆓 📦 |
+| [Blameless postmortems](https://github.com/dastergon/postmortem-templates) | Templates | Intermediate | Free | Structured write-ups focusing on systems not people. | 🟡 🆓 🛠 |
+| [Honeycomb Observability](https://www.honeycomb.io/blog/) | Blog | Advanced | Free | High-cardinality debugging narratives from production teams. | 🔴 🆓 📘 |
+| [Site Reliability Workbook](https://sre.google/workbook/table-of-contents/) | Book | Advanced | Free | Practical chapters on monitoring, alerting, and postmortems. | 🔴 🆓 ⭐ |
+| [PagerDuty Incident Response](https://response.pagerduty.com/) | Guide | Intermediate | Free | Runbooks and on-call hygiene for humane operations. | 🟡 🆓 📘 |
+| [OpenSLO](https://openslo.com/) | Standard | Advanced | Free | Vendor-neutral SLO spec to codify reliability targets. | 🔴 🆓 📦 |
+| [Blameless postmortems](https://github.com/dastergon/postmortem-templates) | Templates | Intermediate | Free | Structured write-ups focusing on systems not people. | 🟡 🆓 🛠 |
+| [Honeycomb Observability](https://www.honeycomb.io/blog/) | Blog | Advanced | Free | High-cardinality debugging narratives from production teams. | 🔴 🆓 📘 |
+| [Site Reliability Workbook](https://sre.google/workbook/table-of-contents/) | Book | Advanced | Free | Practical chapters on monitoring, alerting, and postmortems. | 🔴 🆓 ⭐ |
+| [PagerDuty Incident Response](https://response.pagerduty.com/) | Guide | Intermediate | Free | Runbooks and on-call hygiene for humane operations. | 🟡 🆓 📘 |
+| [OpenSLO](https://openslo.com/) | Standard | Advanced | Free | Vendor-neutral SLO spec to codify reliability targets. | 🔴 🆓 📦 |
+| [Blameless postmortems](https://github.com/dastergon/postmortem-templates) | Templates | Intermediate | Free | Structured write-ups focusing on systems not people. | 🟡 🆓 🛠 |
+| [Honeycomb Observability](https://www.honeycomb.io/blog/) | Blog | Advanced | Free | High-cardinality debugging narratives from production teams. | 🔴 🆓 📘 |
+| [Site Reliability Workbook](https://sre.google/workbook/table-of-contents/) | Book | Advanced | Free | Practical chapters on monitoring, alerting, and postmortems. | 🔴 🆓 ⭐ |
+| [PagerDuty Incident Response](https://response.pagerduty.com/) | Guide | Intermediate | Free | Runbooks and on-call hygiene for humane operations. | 🟡 🆓 📘 |
+| [OpenSLO](https://openslo.com/) | Standard | Advanced | Free | Vendor-neutral SLO spec to codify reliability targets. | 🔴 🆓 📦 |
+| [Blameless postmortems](https://github.com/dastergon/postmortem-templates) | Templates | Intermediate | Free | Structured write-ups focusing on systems not people. | 🟡 🆓 🛠 |
 ---
 
 ## 🧪 Case Studies & Hands-On Labs
@@ -591,7 +858,19 @@ Thirty-plus infrastructure projects from Docker to GitOps with documented outcom
 | AWS three-tier architecture | Lab | Advanced | Free | ALB, EC2, RDS with security groups diagram. | 🔴 ☁ 🛠 ⭐ |
 | GCP Cloud Run deploy | Lab | Intermediate | Free | Container to HTTPS with minimal config. | 🟡 ☁ 🚀 |
 | Azure AKS cluster | Lab | Advanced | Free | AKS with Azure CNI and Helm ingress. | 🔴 ☁ 🛠 |
-
+| Ansible hardening playbooks | Lab | Intermediate | Free | Apply CIS roles and diff reports before/after runs. | 🟡 🆓 🛡 |
+| Cross-cloud object replication | Lab | Advanced | Free | Sync buckets with lifecycle rules and metrics. | 🔴 🆓 🚀 |
+| Service mesh canary | Lab | Advanced | Free | Shift traffic with Istio or Linkerd observability. | 🔴 🆓 🚀 |
+| Bare-metal k3s on ARM | Lab | Intermediate | Free | Cluster on SBC boards with external etcd backup. | 🟡 🆓 🛠 |
+| Terraform drift detection | Lab | Intermediate | Free | Schedule plan in CI and open issues on changes. | 🟡 🆓 🛠 |
+| Windows node Linux cluster | Lab | Advanced | Free | Mixed-OS scheduling lessons for real enterprises. | 🔴 🆓 📘 |
+| Secrets rotation game day | Lab | Advanced | Free | Rotate DB creds without downtime using sidecars. | 🔴 🆓 🚀 |
+| Multi-region failover drill | Lab | Advanced | Free | Document RTO/RPO after controlled region loss. | 🔴 🆓 📘 |
+| Cost anomaly alert | Lab | Intermediate | Free | Budget alerts tied to Slack with runbook links. | 🟡 🆓 🛠 |
+| Supply chain signed images | Lab | Advanced | Free | Cosign verify gate in admission controller. | 🔴 🆓 🛡 |
+| Chaos pod kill experiment | Lab | Intermediate | Free | Litmus or chaos-mesh with hypothesis notes. | 🟡 🆓 🚀 |
+| On-call shadow week | Lab | Intermediate | Free | Pair with mentor and write follow-the-sun doc. | 🟡 🆓 📘 |
+| Internal developer portal | Lab | Advanced | Free | Backstage catalog with templates and scorecards. | 🔴 🆓 🚀 |
 ---
 
 ## 💡 Project Ideas (30+)
@@ -617,7 +896,19 @@ Portfolio-grade ops projects demonstrating automation, reliability, and cost awa
 | VLAN segmentation sketch | Lab | Intermediate | Free | Isolate IoT and server networks on homelab. | 🟡 🛠 🛡 |
 | WireGuard site-to-site | Lab | Advanced | Free | Connect two homelab sites securely. | 🔴 🛠 🛡 |
 | Immutable AMI pipeline | Lab | Advanced | Free | Packer build wired into CI/CD. | 🔴 ☁ 🛠 |
-
+| Golden AMI pipeline | Lab | Advanced | Free | Packer plus CI publishes versioned machine images. | 🔴 🆓 🚀 |
+| Policy as code bundle | Lab | Advanced | Free | OPA or Kyverno guards namespaced defaults. | 🔴 🆓 🛡 |
+| Edge CDN homelab | Lab | Intermediate | Free | Cache static assets behind Traefik and metrics. | 🟡 🆓 🛠 |
+| Database migration pipeline | Lab | Intermediate | Free | Flyway or Liquibase wired into deploy workflow. | 🟡 🆓 🚀 |
+| Synthetic monitoring probes | Lab | Intermediate | Free | Blackbox exporter checks critical user journeys. | 🟡 🆓 🛠 |
+| FinOps dashboard | Lab | Advanced | Free | OpenCost views by team with anomaly annotations. | 🔴 🆓 📘 |
+| Runbook library site | Lab | Beginner | Free | MkDocs site from markdown ops procedures. | 🟢 🆓 🚀 |
+| Self-hosted CI runners | Lab | Advanced | Free | Autoscale runners on homelab Kubernetes. | 🔴 🆓 🛠 |
+| Immutable infrastructure demo | Lab | Intermediate | Free | Replace pets with cattle ASG or MIG pattern. | 🟡 🆓 📘 |
+| Zero-trust homelab access | Lab | Advanced | Free | Identity-aware proxy without legacy VPN. | 🔴 🆓 🛡 |
+| Progressive delivery flags | Lab | Advanced | Free | Feature flags plus observability correlation. | 🔴 🆓 🚀 |
+| SBOM publication | Lab | Intermediate | Free | Syft/Grype artifacts attached to each release. | 🟡 🆓 🛡 |
+| Multi-tenant namespace design | Lab | Advanced | Free | Quota, NetworkPolicy, and RBAC templates. | 🔴 🆓 📘 |
 ---
 
 ## ❓ FAQ
@@ -628,7 +919,6 @@ Portfolio-grade ops projects demonstrating automation, reliability, and cost awa
 | Which cloud provider first? | Pick one hyperscaler deeply; concepts transfer — AWS has broadest job mentions. |
 | Terraform or CloudFormation? | Terraform for multi-cloud portability; CloudFormation when AWS-only with native integration. |
 | Homelab without expensive hardware? | Start with one mini PC or old laptop — k3s and Docker teach most concepts. |
-
 ---
 
 ## 🤝 Contributing
@@ -636,7 +926,6 @@ Portfolio-grade ops projects demonstrating automation, reliability, and cost awa
 - [ ] DevOps, cloud, or homelab resource with canonical link
 - [ ] Original one-sentence description
 - [ ] Pure language tutorials belong in language-specific awesome lists
-
 ---
 
 
